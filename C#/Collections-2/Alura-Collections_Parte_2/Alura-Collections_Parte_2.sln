@@ -13,11 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayMultidimensional", "Ar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JaggedArray", "JaggedArray\JaggedArray.csproj", "{C38E01D1-70A8-4BE3-88E5-09E730E894D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultandoCollections", "ConsultandoCollections\ConsultandoCollections.csproj", "{51085478-4AE7-4F90-AC8B-5A46EBE2A3FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsultandoCollections", "ConsultandoCollections\ConsultandoCollections.csproj", "{51085478-4AE7-4F90-AC8B-5A46EBE2A3FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutrosOperadoresLINQ", "OutrosOperadoresLINQ\OutrosOperadoresLINQ.csproj", "{BA76E350-75C7-4279-AE73-011002CB2C39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutrosOperadoresLINQ", "OutrosOperadoresLINQ\OutrosOperadoresLINQ.csproj", "{BA76E350-75C7-4279-AE73-011002CB2C39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperadoresDeConjuntos", "OperadoresDeConjuntos\OperadoresDeConjuntos.csproj", "{B1AA2250-C48E-4DFB-9756-682066787843}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OperadoresDeConjuntos", "OperadoresDeConjuntos\OperadoresDeConjuntos.csproj", "{B1AA2250-C48E-4DFB-9756-682066787843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Covariancia", "Covariancia\Covariancia.csproj", "{A6029F86-1CAE-4A99-B2EE-C100D33A697F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foreach", "Foreach\Foreach.csproj", "{23AFDFD8-79EF-40E1-AB15-7BE221D2B028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{B1AA2250-C48E-4DFB-9756-682066787843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1AA2250-C48E-4DFB-9756-682066787843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1AA2250-C48E-4DFB-9756-682066787843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6029F86-1CAE-4A99-B2EE-C100D33A697F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6029F86-1CAE-4A99-B2EE-C100D33A697F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6029F86-1CAE-4A99-B2EE-C100D33A697F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6029F86-1CAE-4A99-B2EE-C100D33A697F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AFDFD8-79EF-40E1-AB15-7BE221D2B028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AFDFD8-79EF-40E1-AB15-7BE221D2B028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AFDFD8-79EF-40E1-AB15-7BE221D2B028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AFDFD8-79EF-40E1-AB15-7BE221D2B028}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
