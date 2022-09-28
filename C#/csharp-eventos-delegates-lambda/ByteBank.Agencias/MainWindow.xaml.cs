@@ -43,6 +43,24 @@ namespace ByteBank.Agencias
 
             lstAgencias.SelectionChanged += new SelectionChangedEventHandler(lstAgencias_SelectionChanged);
             container.Children.Add(lstAgencias);
+
+            btnEditar.Click += new RoutedEventHandler(btnEditar_Click);
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            var agenciaAtual = lstAgencias.SelectedItem as Agencia;
+            var janelaEdicao = new EdicaoAgencia(agenciaAtual);
+            var resultado = janelaEdicao.ShowDialog().Value;
+
+            if (resultado)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         private void AtualizarListaDeAgencias()
