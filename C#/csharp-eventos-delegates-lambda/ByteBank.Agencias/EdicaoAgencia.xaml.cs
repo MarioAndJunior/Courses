@@ -28,6 +28,14 @@ namespace ByteBank.Agencias
             _agencia = agencia ?? throw new ArgumentNullException(nameof(agencia));
             AtualizarCamposDeTexto();
             AtualizarControles();
+
+            //Ao inves de ficar colocando no construtor iremos criar um evento proprio
+            //ValidarCampoNulo(txtNumero, EventArgs.Empty);
+            //ValidarSomenteNumeros(txtNumero, EventArgs.Empty);
+            //ValidarCampoNulo(txtNome, EventArgs.Empty);
+            //ValidarCampoNulo(txtTelefone, EventArgs.Empty);
+            //ValidarCampoNulo(txtEndereco, EventArgs.Empty);
+            //ValidarCampoNulo(txtDescricao, EventArgs.Empty);
         }
 
         private void AtualizarCamposDeTexto()
@@ -70,17 +78,17 @@ namespace ByteBank.Agencias
             btnOk.Click += okEventHandler;
             btnCancelar.Click += cancelarEventHandler;
 
-            txtNumero.TextChanged += ValidarCampoNulo;
-            txtNumero.TextChanged += ValidarSomenteNumeros;
-            txtNome.TextChanged += ValidarCampoNulo;
-            txtDescricao.TextChanged += ValidarCampoNulo;
-            txtEndereco.TextChanged += ValidarCampoNulo;
-            txtTelefone.TextChanged += ValidarCampoNulo;
+            txtNumero.Validacao += ValidarCampoNulo;
+            txtNumero.Validacao += ValidarSomenteNumeros;
+            txtNome.Validacao += ValidarCampoNulo;
+            txtDescricao.Validacao += ValidarCampoNulo;
+            txtEndereco.Validacao += ValidarCampoNulo;
+            txtTelefone.Validacao += ValidarCampoNulo;
         }
 
-        private void ValidarSomenteNumeros(object sender, EventArgs e)
+        private void ValidarSomenteNumeros(object sender, ValidacaoEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
+            //TextBox textBox = sender as TextBox;
 
             // Modo full
             //Func<char, bool> verificaSeEhDigito = caractere =>
@@ -90,36 +98,28 @@ namespace ByteBank.Agencias
             //var todosCaracteresSaoDigito = txtNumero.Text.All(verificaSeEhDigito);
 
             // Modo simples, eh possivel pois o IsDigit tem a mesma assinatura esperada da função
-            var todosCaracteresSaoDigito = txtNumero.Text.All(Char.IsDigit);
-            if (String.IsNullOrEmpty(textBox.Text.Trim()))
-            {
-                todosCaracteresSaoDigito = false;
-            }
+            //var todosCaracteresSaoDigito = txtNumero.Text.All(Char.IsDigit);
+            //if (String.IsNullOrEmpty(textBox.Text.Trim()))
+            //{
+            //    todosCaracteresSaoDigito = false;
+            //}
 
-            if (todosCaracteresSaoDigito)
-            {
-                textBox.Background = new SolidColorBrush(Colors.White);
-            }
-            else
-            {
-                textBox.Background = new SolidColorBrush(Colors.OrangeRed);
-            }
+            //if (todosCaracteresSaoDigito)
+            //{
+            //    textBox.Background = new SolidColorBrush(Colors.White);
+            //}
+            //else
+            //{
+            //    textBox.Background = new SolidColorBrush(Colors.OrangeRed);
+            //}
 
+            var ehValido = e.Texto.All(Char.IsDigit);
+            e.EhValido = ehValido;
         }
-        private void ValidarCampoNulo(object sender, EventArgs e)
+        private void ValidarCampoNulo(object sender, ValidacaoEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            var textoEstaVazio = String.IsNullOrEmpty(textBox.Text.Trim());
-
-            if (textoEstaVazio)
-            {
-                textBox.Background = new SolidColorBrush(Colors.OrangeRed);
-            }
-            else
-            {
-                textBox.Background = new SolidColorBrush(Colors.White);
-            }
-
+            var ehValido = !String.IsNullOrEmpty(e.Texto.Trim());
+            e.EhValido = ehValido;
         }
 
         //private void btnOk_Click(object sender, EventArgs e)
