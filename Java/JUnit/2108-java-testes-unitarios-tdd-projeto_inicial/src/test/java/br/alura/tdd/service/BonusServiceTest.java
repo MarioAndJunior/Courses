@@ -33,13 +33,13 @@ class BonusServiceTest {
 	}
 	
 	@Test
-	void bonusDeveriaSer10PorCentoDoSalario() {
+	void bonusDeveriaSer10PorCentoDoSalario10mil() {
 		BonusService bonusService = new BonusService();
-		Funcionario funcionario = new Funcionario("Mario", LocalDate.now(), new BigDecimal("2500"));
+		Funcionario funcionario = new Funcionario("Mario", LocalDate.now(), new BigDecimal("10000"));
 		
 		BigDecimal bonus = bonusService.calcularBonus(funcionario);
 		
-		assertEquals(new BigDecimal("250.00"), bonus);
+		assertEquals(new BigDecimal("1000.00"), bonus);
 	}
 
 }
