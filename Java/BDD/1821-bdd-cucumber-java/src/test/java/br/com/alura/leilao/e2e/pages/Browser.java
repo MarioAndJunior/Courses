@@ -30,4 +30,8 @@ public class Browser {
 		driver.manage().deleteAllCookies();
 		driver.close();
 	}
+
+	public void close() {
+		driver.close();
+	}
 }
