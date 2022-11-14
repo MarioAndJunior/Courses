@@ -1,0 +1,52 @@
+SQL Datasheet
+
+	Comandos
+		CREATE -> criar
+		DROP -> excluir (mais a nivel de tabela)
+		DELETE -> excluir (mais a nivel de dados)
+		INSERT -> inserção
+		UPDATE -> atualização
+		
+	Sinais
+		= -> igualdade
+		<> ou != -> diferente
+		> -> maior
+		< -> menor
+		>= -> maior ou igual
+		<= -> menor ou igual
+		AND -> e
+		OR -> ou
+		
+	Tipos dados (alguns exemplos, consultar documentação do banco para saber mais)
+		Numerico
+			integer
+			real
+			serial
+			numeric
+		Texto
+			varchar(n)
+			char(n)
+		text
+		boolanos
+			boolean
+		data/ hora
+			date
+			time
+			timestamp 
+			
+	Chaves
+		Chaves primarias
+			Devem ser não nulas e unicas em uma tabela.
+		Chaves estrangeiras
+			Indicam que o valor do nome da coluna deve existir em outra tabela.
+			
+	Joins
+		INNER traz dados existentes em ambas as tabelas (conjuntos comuns).
+		LEFT traz o inner + dados da tabela esquerda.
+		RIGHT traz o inner + dados da tabela direita.
+		FULL traz todos os dados de ambas as tabelas.
+		CROSS "multiplica" os dados de uma tabela pela outra.
+		
+	Restricoes
+		RESTRICT (default) restringe a ação para quando há uma relação (pode ser usado no ON DELETE e ON UPDATE)
+		CASCADE (default) forma um efeito cascata sobre a ação para quando há uma relação (pode ser usado no ON DELETE e ON UPDATE)
