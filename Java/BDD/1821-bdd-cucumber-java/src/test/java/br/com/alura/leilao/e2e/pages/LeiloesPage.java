@@ -1,6 +1,8 @@
 package br.com.alura.leilao.e2e.pages;
 
 
+import java.util.function.BooleanSupplier;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +29,7 @@ public class LeiloesPage {
 	}
 	
 	public boolean estaNaPaginaDeLeiloes() {
+		this.esperaCarregarPaginaDeLeiloes();
 		return this.driver.getCurrentUrl().endsWith("/leiloes");
 	}
 
@@ -79,5 +82,10 @@ public class LeiloesPage {
 		WebElement href = driver.findElement(
 				By.xpath("//table[@class='table table-hover']/tbody/tr/td[contains(text(),'" +donoDoLeilao+ "')]/following-sibling::td/a"));
 		return href.getText().contains("editar");
+	}
+	
+	public void esperaCarregarPaginaDeLeiloes() {
+		WebDriverWait wait = new WebDriverWait(driver,2);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'Todos leilões')]")));
 	}
 }

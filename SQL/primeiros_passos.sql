@@ -302,3 +302,107 @@ update aluno
 	where id = 2;
 	
 select * from aluno_curso;
+
+create table funcionarios (
+	id			serial		primary key,
+	matricula	varchar(255),
+	nome		varchar(255),
+	sobrenome	varchar(255)
+);
+
+insert into funcionarios (matricula, nome, sobrenome) values ('M001', 'Diogo', 'Mascarenhas');
+insert into funcionarios (matricula, nome, sobrenome) values ('M002', 'Vinicius', 'Dias');
+insert into funcionarios (matricula, nome, sobrenome) values ('M003', 'Nico', 'Steppat');
+insert into funcionarios (matricula, nome, sobrenome) values ('M004', 'Joao', 'Roberto');
+insert into funcionarios (matricula, nome, sobrenome) values ('M005', 'Diogo', 'Mascarenhas');
+insert into funcionarios (matricula, nome, sobrenome) values ('M006', 'Alberto', 'Martins');
+insert into funcionarios (matricula, nome, sobrenome) values ('M007', 'Diogo', 'Oliveira');
+
+
+select * 
+	from funcionarios
+	order by nome;
+	
+select * 
+	from funcionarios
+	order by nome desc;
+	
+select * 
+	from funcionarios
+	order by nome, matricula;
+	
+select * 
+	from funcionarios
+	order by 3, 4, 2;
+	
+select * 
+	from funcionarios
+	order by 4 desc, funcionarios.nome desc, 2 asc;
+	
+select * 
+	from funcionarios
+	order by nome
+   limit 5;
+   
+select * 
+   from funcionarios
+	order by id
+   limit 5
+offset 5;
+
+select * from funcionarios
+
+select count (id)
+	from funcionarios;
+	
+select count (id),
+	sum (id),
+	max (id),
+	min (id),
+	round (avg (id), 2)
+	from funcionarios;
+
+select 
+		nome,
+		sobrenome,
+		count (id)
+	from funcionarios
+	group by nome, sobrenome
+	order by nome;
+	
+select distinct
+		nome,
+		sobrenome
+	from funcionarios
+
+select curso.nome,
+	count (aluno.id)
+	from aluno
+	join aluno_curso on aluno.id = aluno_curso.aluno_id
+	join curso on curso.id = aluno_curso.curso_id
+group by 1
+order by 1
+
+select * from aluno
+select * from curso
+select * from aluno_curso
+insert into aluno (nome) values ('Nico')
+insert into curso (id, nome) values (3, 'css')
+
+insert into aluno_curso (aluno_id, curso_id) values (3,3)
+
+--having deve ser usado com as funcoes, where com os campos / itens
+select curso.nome,
+		count(aluno.id)
+	from curso
+	left join aluno_curso on aluno_curso.curso_id = curso.id
+	left join aluno on aluno.id = aluno_curso.aluno_id
+	--where curso.nome = 'Javascript'
+group by 1
+	having count(aluno.id) =0
+	
+select nome,
+	count(id)
+	from funcionarios
+	group by nome
+	having count(id) > 1

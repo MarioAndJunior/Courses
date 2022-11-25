@@ -35,11 +35,11 @@ public class LoginSteps {
 	@Entao("eh redirecionado para a pagina de leiloes")
 	public void eh_redirecionado_para_a_pagina_de_leiloes() {
 	    Assertions.assertTrue(leiloesPage.estaNaPaginaDeLeiloes());
-	    this.browser.close();
+	    this.browser.clean();
 	}
 	
-	@Dado("o usario invalido")
-	public void o_usario_invalido() {
+	@Dado("o usuario invalido")
+	public void o_usuario_invalido() {
 		browser = new Browser();
 		loginPage = browser.getLoginPage();
 	}
@@ -49,7 +49,7 @@ public class LoginSteps {
 	}
 	@Entao("continua na pagina de login")
 	public void continua_na_pagina_de_login() {
-		Assertions.assertFalse(leiloesPage.estaNaPaginaDeLeiloes());
-		this.browser.close();
+		Assertions.assertTrue(loginPage.estaNaPaginaDeLoginComErro());
+		this.browser.clean();
 	}
 }

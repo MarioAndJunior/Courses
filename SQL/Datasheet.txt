@@ -49,4 +49,4 @@ SQL Datasheet
 		
 	Restricoes
 		RESTRICT (default) restringe a ação para quando há uma relação (pode ser usado no ON DELETE e ON UPDATE)
-		CASCADE (default) forma um efeito cascata sobre a ação para quando há uma relação (pode ser usado no ON DELETE e ON UPDATE)
+		CASCADE (default) forma um efeito cascata sobre2 a ação para quando há uma relação (pode ser usado no ON DELETE e ON UPDATE)
