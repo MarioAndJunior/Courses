@@ -164,7 +164,7 @@ form {
 	margin: 40px 0;
 }
 
-form label, p {
+form label, form legend {
 	display: block;
 	font-size: 20px;
 	margin: 0 0 10px;
@@ -179,4 +179,60 @@ form label, p {
 
 .checkbox {
 	margin: 20px 0;
+}
+
+/* exemplo de força de seleção do CSS */
+/* p {
+	color: red;
+}
+
+form p {
+	color: blue;
+}
+
+.teste {
+	color: yellow;
+}
+
+p.teste {
+	color: orange;
+}
+
+#teste {
+	color: pink;
+} */
+
+.enviar {
+	width: 40%;
+	padding: 15px 0;
+	background-color: orange;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	border: none;
+	border-radius: 5px;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.enviar:hover {
+	background-color: darkorange;
+	transform: scale(1.2); /* aumentar em 20%*/
+	/*transform: rotate(90deg); /* leitura é feita de cima para baixo, para "somar" tem que declarar em uma linha só*/
+}
+
+table {
+	margin: 20px 0 40px;
+
+}
+
+thead {
+	background-color: #555555;
+	color: white;
+	font-weight: bold;
+}
+
+td, th {
+	border: 1px solid #000000;
+	padding: 8px 15px;
 }
