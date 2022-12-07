@@ -1,39 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32510.428
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo", "CasaDoCodigo\CasaDoCodigo.csproj", "{755001A2-30E2-4220-8A88-12EEA5892836}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Recursos", "_Recursos", "{A28E998F-BEBB-4D44-B58E-FDC4305848AB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Recursos", "_Recursos", "{92A79B78-FF00-45B6-A260-E3B5B777E689}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{0B7D7A3C-FEE0-49AF-88A4-D75E8CC62229}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{89FD94ED-6C15-4940-B808-FA455F1F9A2F}"
 	ProjectSection(SolutionItems) = preProject
 		_Recursos\css\site.css = _Recursos\css\site.css
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dados", "dados", "{227EF671-EFD1-4D47-B598-8A33E42258E5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dados", "dados", "{7B729AFF-9C27-42AA-9EAE-1CB9C47AAEE6}"
 	ProjectSection(SolutionItems) = preProject
 		_Recursos\dados\livros.json = _Recursos\dados\livros.json
 		_Recursos\dados\modelo.cs = _Recursos\dados\modelo.cs
 		_Recursos\dados\modelo.png = _Recursos\dados\modelo.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logos", "logos", "{9932F6CF-F8AD-4CE8-9433-5F8F3B5A3805}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logos", "logos", "{28F86A0D-F893-41A4-ACA9-ABF0D250145A}"
 	ProjectSection(SolutionItems) = preProject
 		_Recursos\logos\logo.png = _Recursos\logos\logo.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "views-com-bootstrap", "views-com-bootstrap", "{73C65DDC-8779-44B4-92D6-FFB37622FFE6}"
-	ProjectSection(SolutionItems) = preProject
-		_Recursos\views-com-bootstrap\_Layout.cshtml = _Recursos\views-com-bootstrap\_Layout.cshtml
-		_Recursos\views-com-bootstrap\Cadastro.cshtml = _Recursos\views-com-bootstrap\Cadastro.cshtml
-		_Recursos\views-com-bootstrap\Carrinho.cshtml = _Recursos\views-com-bootstrap\Carrinho.cshtml
-		_Recursos\views-com-bootstrap\Carrossel.cshtml = _Recursos\views-com-bootstrap\Carrossel.cshtml
-		_Recursos\views-com-bootstrap\Resumo.cshtml = _Recursos\views-com-bootstrap\Resumo.cshtml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "produtos", "produtos", "{FD999E33-DA09-4E08-8389-7BD929D54B61}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "produtos", "produtos", "{1999EB61-BD5A-4CFC-8BC7-EB1B9B857DBC}"
 	ProjectSection(SolutionItems) = preProject
 		_Recursos\produtos\large_001.jpg = _Recursos\produtos\large_001.jpg
 		_Recursos\produtos\large_002.jpg = _Recursos\produtos\large_002.jpg
@@ -103,28 +92,55 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "produtos", "produtos", "{FD
 		_Recursos\produtos\livros.txt = _Recursos\produtos\livros.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "views-com-bootstrap", "views-com-bootstrap", "{67BBCF24-3967-443D-97DE-559909FAF72A}"
+	ProjectSection(SolutionItems) = preProject
+		_Recursos\views-com-bootstrap\_Layout.cshtml = _Recursos\views-com-bootstrap\_Layout.cshtml
+		_Recursos\views-com-bootstrap\Cadastro.cshtml = _Recursos\views-com-bootstrap\Cadastro.cshtml
+		_Recursos\views-com-bootstrap\Carrinho.cshtml = _Recursos\views-com-bootstrap\Carrinho.cshtml
+		_Recursos\views-com-bootstrap\Carrossel.cshtml = _Recursos\views-com-bootstrap\Carrossel.cshtml
+		_Recursos\views-com-bootstrap\Resumo.cshtml = _Recursos\views-com-bootstrap\Resumo.cshtml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aulas", "Aulas", "{6474456B-3094-4366-B537-73466B93B359}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula1", "Aula1", "{BC06BC52-4BE8-44D8-8062-6AC245BFF722}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CasaDoCodigo.Aula1", "Aulas\Aula1\CasaDoCodigo\CasaDoCodigo.Aula1.csproj", "{178B613C-AD1F-4248-9312-E7D23D825D3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aula2", "Aula2", "{09801604-FC38-4D04-90B5-1F023C6DE2F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CasaDoCodigo", "Aulas\Aula2\CasaDoCodigo\CasaDoCodigo.csproj", "{724F6AC3-E136-4FC6-94E6-B65077B1734C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{755001A2-30E2-4220-8A88-12EEA5892836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{755001A2-30E2-4220-8A88-12EEA5892836}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{755001A2-30E2-4220-8A88-12EEA5892836}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{755001A2-30E2-4220-8A88-12EEA5892836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{178B613C-AD1F-4248-9312-E7D23D825D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{178B613C-AD1F-4248-9312-E7D23D825D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{178B613C-AD1F-4248-9312-E7D23D825D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{178B613C-AD1F-4248-9312-E7D23D825D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724F6AC3-E136-4FC6-94E6-B65077B1734C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724F6AC3-E136-4FC6-94E6-B65077B1734C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724F6AC3-E136-4FC6-94E6-B65077B1734C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724F6AC3-E136-4FC6-94E6-B65077B1734C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0B7D7A3C-FEE0-49AF-88A4-D75E8CC62229} = {92A79B78-FF00-45B6-A260-E3B5B777E689}
-		{227EF671-EFD1-4D47-B598-8A33E42258E5} = {92A79B78-FF00-45B6-A260-E3B5B777E689}
-		{9932F6CF-F8AD-4CE8-9433-5F8F3B5A3805} = {92A79B78-FF00-45B6-A260-E3B5B777E689}
-		{73C65DDC-8779-44B4-92D6-FFB37622FFE6} = {92A79B78-FF00-45B6-A260-E3B5B777E689}
-		{FD999E33-DA09-4E08-8389-7BD929D54B61} = {92A79B78-FF00-45B6-A260-E3B5B777E689}
+		{89FD94ED-6C15-4940-B808-FA455F1F9A2F} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
+		{7B729AFF-9C27-42AA-9EAE-1CB9C47AAEE6} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
+		{28F86A0D-F893-41A4-ACA9-ABF0D250145A} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
+		{1999EB61-BD5A-4CFC-8BC7-EB1B9B857DBC} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
+		{67BBCF24-3967-443D-97DE-559909FAF72A} = {A28E998F-BEBB-4D44-B58E-FDC4305848AB}
+		{BC06BC52-4BE8-44D8-8062-6AC245BFF722} = {6474456B-3094-4366-B537-73466B93B359}
+		{178B613C-AD1F-4248-9312-E7D23D825D3D} = {BC06BC52-4BE8-44D8-8062-6AC245BFF722}
+		{09801604-FC38-4D04-90B5-1F023C6DE2F4} = {6474456B-3094-4366-B537-73466B93B359}
+		{724F6AC3-E136-4FC6-94E6-B65077B1734C} = {09801604-FC38-4D04-90B5-1F023C6DE2F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {21E4DD20-5D98-4524-93F1-C26FEDD8457C}
+		SolutionGuid = {6FED210B-3460-45CF-9C4D-877F0D63546F}
 	EndGlobalSection
 EndGlobal
