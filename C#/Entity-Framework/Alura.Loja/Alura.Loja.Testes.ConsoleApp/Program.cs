@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +14,66 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            // GravarUsandoAdoNet();
-            //GravarUsandoEntity();
-            //RecuperarProdutos();
-            //ExcluirProdutos();
+
+        }
+
+        private static void CrudADOVsEF()
+        {
+            GravarUsandoAdoNet();
+            GravarUsandoEntity();
+            RecuperarProdutos();
+            ExcluirProdutos();
             AtualizarProduto();
+        }
+
+        private static void EntendendoChangeTracker()
+        {
+            using (var contexto = new LojaContext())
+            {
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+                var produtos = contexto.Produtos.ToList();
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                //var p1 = produtos.Last();
+                //p1.Nome = "Goldeneye";
+
+                var novoProduto = new Produto()
+                {
+                    Nome = "Sabão em Pó",
+                    Categoria = "Limpeza",
+                    Preco = 5.99,
+                };
+                contexto.Produtos.Add(novoProduto);
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                contexto.Produtos.Remove(novoProduto);
+
+                //var p1 = contexto.Produtos.First();
+                //contexto.Produtos.Remove(p1);
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                //contexto.SaveChanges();
+
+                EntityEntry<Produto> entityEntry = contexto.Entry(novoProduto);
+                Console.WriteLine($"\n\n{entityEntry} - {entityEntry.State}");
+
+                ExibeEntries(contexto.ChangeTracker.Entries());
+            }
+        }
+
+        private static void ExibeEntries(IEnumerable<EntityEntry> entries)
+        {
+            Console.WriteLine("==================");
+            foreach (var e in entries)
+            {
+                Console.WriteLine($"{e.Entity} - {e.State}");
+            }
         }
 
         private static void AtualizarProduto()

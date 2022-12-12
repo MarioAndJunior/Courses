@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D59A32D0-B933-45D7-8922-483BF3C08524}</ProjectGuid>
+    <ProjectGuid>{BA82CA1C-88CB-4B9D-B0C6-90BD22F55C22}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Alura.Loja.Testes.ConsoleApp</RootNamespace>
     <AssemblyName>Alura.Loja.Testes.ConsoleApp</AssemblyName>
@@ -145,7 +145,6 @@
     <Compile Include="IProdutoDAO.cs" />
     <Compile Include="LojaContext.cs" />
     <Compile Include="Produto.cs" />
-    <Compile Include="ProdutoDAO.cs" />
     <Compile Include="ProdutoDAOEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
