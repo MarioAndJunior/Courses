@@ -17,13 +17,14 @@ public class RepositoryDeAlunosEmMemoria implements RepositorioDeAlunos {
 
 	@Override
 	public Aluno buscarPorCPF(CPF cpf) {
-		for (Aluno aluno : matriculados) {
-			if (aluno.getCpf().getNumero() == cpf.getNumero()) {
-				return aluno;
-			}
+		try {
+			return this.matriculados.stream()
+					.filter(a -> a.getCpf().getNumero().equals(cpf.getNumero()))
+					.findFirst()
+					.orElseThrow(() -> new AlunoNaoEncontrado(cpf));
+		} catch (AlunoNaoEncontrado e) {
+			return null;
 		}
-		
-		return null;
 	}
 
 	@Override
