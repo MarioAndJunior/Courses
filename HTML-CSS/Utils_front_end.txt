@@ -1,0 +1,3 @@
+vercel.com -> para fazer deploy de testes
+https://coolors.co/ -> paleta de cores
+https://colorhunt.co/ -> outro de paleta bem bom
