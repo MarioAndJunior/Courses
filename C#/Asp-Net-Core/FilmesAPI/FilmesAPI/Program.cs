@@ -1,4 +1,4 @@
-using FilmesAPI;
+using FilmesApi;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
