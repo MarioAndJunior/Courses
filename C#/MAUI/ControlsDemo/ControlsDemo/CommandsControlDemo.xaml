@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlsDemo.CommandsControlDemo"
+             Title="CommandsControlDemo">
+    <VerticalStackLayout>
+        <Button x:Name="btnTest" Text="Click me!"
+                    Clicked="btnTest_Clicked"/>
+        <ImageButton Source="dotnet_bot.svg"
+                     Clicked="btnTest_Clicked"/>
+        <RadioButton CheckedChanged="RadioButton_CheckedChanged" Content="Option 1" GroupName="gp1"/>
+    </VerticalStackLayout>
+</ContentPage>
