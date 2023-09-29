@@ -2,14 +2,12 @@ package br.com.mario_junior.orgs.ui.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import br.com.mario_junior.orgs.R
 import br.com.mario_junior.orgs.dao.ProdutosDao
 import br.com.mario_junior.orgs.databinding.ActivityFormularioProdutoBinding
+import br.com.mario_junior.orgs.extensions.tentaCarregarImagem
 import br.com.mario_junior.orgs.model.Produto
+import br.com.mario_junior.orgs.ui.dialog.FormularioImagemDialog
 import java.math.BigDecimal
 
 class FormularioProdutoActivity :
@@ -18,19 +16,19 @@ class FormularioProdutoActivity :
     private val binding by lazy {
         ActivityFormularioProdutoBinding.inflate(layoutInflater)
     }
+    private var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        title = "Cadastrar produto"
         configuraBotaoSalvar()
         binding.activityFormularioProdutoImagem.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setView(R.layout.formulario_imagem)
-                .setPositiveButton("Confirmar") { _, _ ->
+            FormularioImagemDialog(this)
+                .mostra(url) { imagem ->
+                    url = imagem
+                    binding.activityFormularioProdutoImagem.tentaCarregarImagem(url)
                 }
-                .setNegativeButton("Cancelar") { _, _ ->
-                }
-                .show()
         }
     }
 
@@ -61,7 +59,8 @@ class FormularioProdutoActivity :
         return Produto(
             nome = nome,
             descricao = descricao,
-            valor = valor
+            valor = valor,
+            imagem = url
         )
     }
 }
