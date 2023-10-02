@@ -1,22 +1,30 @@
 package br.com.mario_junior.orgs.ui.activity
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import br.com.mario_junior.orgs.R
-import br.com.mario_junior.orgs.dao.ProdutosDao
+import androidx.room.Room
+import br.com.mario_junior.orgs.database.AppDatabase
 import br.com.mario_junior.orgs.databinding.ActivityListaProdutosActivityBinding
 import br.com.mario_junior.orgs.ui.recyclerView.adapter.ListaProdutosAdapter
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+
+private const val TAG = "ListaProdutos"
 
 class ListaProdutosActivity : AppCompatActivity() {
 
-    private val dao = ProdutosDao()
-    private val adapter = ListaProdutosAdapter(this, dao.buscaTodos())
+    private val adapter = ListaProdutosAdapter(this)
     private val binding by lazy {
         ActivityListaProdutosActivityBinding.inflate(layoutInflater)
     }
@@ -28,9 +36,46 @@ class ListaProdutosActivity : AppCompatActivity() {
         configuraFab()
     }
 
+    private fun testeCoroutineBloqueante() {
+        runBlocking {
+            Log.i(TAG, "onCreate: runBlocking init")
+            repeat(100) {
+                launch {
+                    Log.i(TAG, "onCreate: launch init $it")
+                    delay(2000)
+                    Log.i(TAG, "onCreate: launch finish $it")
+                }
+            }
+            Log.i(TAG, "onCreate: runBlocking finish")
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        adapter.atualiza(dao.buscaTodos())
+        val produtoDao = AppDatabase.instancia(this).produtoDao()
+        val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            Toast.makeText(
+                this@ListaProdutosActivity,
+                throwable.message,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        val scope = MainScope()
+        scope.launch {
+            repeat(1000) {
+                Log.i(TAG, "onResume: coroutine está em execução $it")
+                delay(1000)
+            }
+        }
+        scope.cancel()
+        scope.launch(handler) {
+
+            val produtos = withContext(Dispatchers.IO) {
+                produtoDao.buscaTodos()
+            }
+//            throw Exception("Deu ruim na coroutine")
+            adapter.atualiza(produtos)
+        }
     }
 
     private fun configuraFab() {
@@ -53,7 +98,7 @@ class ListaProdutosActivity : AppCompatActivity() {
                 this,
                 ProdutoDetalheActivity::class.java
             ).apply {
-                putExtra(CHAVE_PRODUTO, it)
+                putExtra(CHAVE_PRODUTO_ID, it.id)
             }
             startActivity(intent)
         }
