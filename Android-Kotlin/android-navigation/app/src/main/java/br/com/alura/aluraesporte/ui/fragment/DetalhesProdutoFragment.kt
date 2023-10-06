@@ -2,20 +2,16 @@ package br.com.alura.aluraesporte.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.alura.aluraesporte.R
 import br.com.alura.aluraesporte.extensions.formatParaMoedaBrasileira
+import br.com.alura.aluraesporte.ui.viewmodel.ComponentesVisuais
 import br.com.alura.aluraesporte.ui.viewmodel.DetalhesProdutoViewModel
 import br.com.alura.aluraesporte.ui.viewmodel.EstadoAppViewModel
-import br.com.alura.aluraesporte.ui.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.detalhes_produto.detalhes_produto_botao_comprar
 import kotlinx.android.synthetic.main.detalhes_produto.detalhes_produto_nome
 import kotlinx.android.synthetic.main.detalhes_produto.detalhes_produto_preco
@@ -47,7 +43,7 @@ class DetalhesProdutoFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        appViewModel.temAppBar = true
+        appViewModel.temComponentes = ComponentesVisuais(appBar = true)
         buscaProduto()
         configuraBotaoComprar()
     }

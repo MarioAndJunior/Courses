@@ -1,12 +1,17 @@
 package br.com.alura.aluraesporte.ui.activity
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import br.com.alura.aluraesporte.R
 import br.com.alura.aluraesporte.ui.viewmodel.EstadoAppViewModel
+import kotlinx.android.synthetic.main.main_activity.main_activity_bottom_navigation
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -26,14 +31,23 @@ class MainActivity : AppCompatActivity() {
 
             title = navDestination.label
             viewModel.appBar.observe(this, Observer {
-                it?.let { temAppBar ->
-                    if(temAppBar) {
+                it?.let { temComponentes ->
+                    if(temComponentes.appBar) {
                         supportActionBar?.show()
                     } else {
                         supportActionBar?.hide()
                     }
+
+                    if(temComponentes.bottomNavigation) {
+                        main_activity_bottom_navigation.visibility = VISIBLE
+                    } else {
+                        main_activity_bottom_navigation.visibility = GONE
+                    }
                 }
             })
         }
+
+        main_activity_bottom_navigation
+            .setupWithNavController(controlador)
     }
 }
