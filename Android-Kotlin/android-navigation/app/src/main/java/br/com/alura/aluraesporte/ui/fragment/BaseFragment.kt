@@ -21,7 +21,7 @@ abstract class BaseFragment : Fragment() {
         verificaSeEstaLogado()
     }
 
-    private fun vaiParaTelaDeLogin() {
+    protected fun vaiParaTelaDeLogin() {
         val direcao =
             NavGraphDirections.acaoGlobalLogin()
         controlador.navigate(direcao)
