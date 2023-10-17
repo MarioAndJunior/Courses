@@ -20,5 +20,15 @@ public class TestaCursoComAluno {
 		javaColecoes.getAlunos().forEach(a -> {
 			System.out.println(a);
 		});
+		
+		boolean a1Matriculado = javaColecoes.estaMatriculado(a1);
+		System.out.println(a1Matriculado);
+		
+		Aluno aniche = new Aluno("Mauricio Aniche", 1234);
+		
+		System.out.println(javaColecoes.estaMatriculado(aniche));
+		
+		Aluno matriculado = javaColecoes.buscaMatriculado(4321);
+		System.out.println(matriculado);
 	}
 }
