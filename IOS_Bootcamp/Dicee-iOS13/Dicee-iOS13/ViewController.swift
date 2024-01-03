@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var diceImageView1: UIImageView!
     @IBOutlet weak var diceImageView2: UIImageView!
     
-    var dices = [
+    // let é imutável, let vem de deixar em inglês. "Deixe dices com os valores"
+    let dices = [
         UIImage(imageLiteralResourceName: "DiceOne"),
         UIImage(imageLiteralResourceName: "DiceTwo"),
         UIImage(imageLiteralResourceName: "DiceThree"),
@@ -22,25 +23,12 @@ class ViewController: UIViewController {
         UIImage(imageLiteralResourceName: "DiceFive"),
         UIImage(imageLiteralResourceName: "DiceSix")
     ]
-    
-    var leftDiceNumber = 1
-    var rightDiceNumber = 5
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        diceImageView1.image = dices[leftDiceNumber]
-        diceImageView2.image = dices[rightDiceNumber]
-        if (leftDiceNumber == 5) {
-            leftDiceNumber = -1
-        }
-        if (rightDiceNumber == 0) {
-            rightDiceNumber = 6
-        }
-        leftDiceNumber = leftDiceNumber + 1
-        rightDiceNumber = rightDiceNumber - 1
+        
+        // https://www.khanacademy.org/computing/computer-science/cryptography/crypt/v/random-vs-pseudorandom-number-generators
+        diceImageView1.image = dices.randomElement() // ou [Int.random(in: 0...5)]
+        diceImageView2.image = dices.randomElement() // ou [Int.random(in: 0...5)]
     }
     
 }
