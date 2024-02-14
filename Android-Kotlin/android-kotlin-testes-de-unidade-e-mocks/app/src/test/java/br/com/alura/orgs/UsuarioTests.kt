@@ -4,9 +4,9 @@ import br.com.alura.orgs.model.Usuario
 import org.junit.Assert
 import org.junit.Test
 
-class TestaUsuario {
+class UsuarioTests {
     @Test
-    fun aoCriarUmUsuarioComOValorCertoOUsuarioDeveriaSerValido() {
+    fun `deve retornar verdadeiro quando o usuario for valido`() {
         val usuarioValido = Usuario(
             id = "Mario",
             email = "email@email.com",
@@ -19,7 +19,7 @@ class TestaUsuario {
     }
 
     @Test
-    fun aoCriarUmUsuarioComEmailInvalidoDeveriaDarErro() {
+    fun `deve retornar falso quando o email do usuario for invalido`() {
         val usuarioValido = Usuario(
             id = "Mario",
             email = "email@email",
@@ -32,7 +32,7 @@ class TestaUsuario {
     }
 
     @Test
-    fun aoCriarUmUsuarioComSenhaMenorQueSeisCaracteresDeveriaDarErro() {
+    fun `deve retornar falso quando o tamanho da senha do usuario for menor que seis digitos`() {
         val usuarioValido = Usuario(
             id = "Mario",
             email = "email@email.com",
