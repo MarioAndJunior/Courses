@@ -1,8 +1,8 @@
 package br.com.alura.orgs
 
 import br.com.alura.orgs.model.Produto
-import org.amshove.kluent.shouldBeEqualTo
-import org.junit.Assert
+import org.amshove.kluent.shouldBeFalse
+import org.amshove.kluent.shouldBeTrue
 import org.junit.Test
 import java.math.BigDecimal
 
@@ -16,7 +16,7 @@ class ProdutoTests {
         )
 
         val ehValido = produtoValido.valorValido
-        ehValido shouldBeEqualTo true
+        ehValido.shouldBeTrue()
         //Assert.assertTrue(ehValido)
     }
 
@@ -29,8 +29,8 @@ class ProdutoTests {
         )
 
         val ehValido = produtoInvalido.valorValido
-
-        Assert.assertFalse(ehValido)
+        ehValido.shouldBeFalse()
+        //Assert.assertFalse(ehValido)
     }
 
     @Test
@@ -50,7 +50,9 @@ class ProdutoTests {
         val igualAZeroEhValido = produtoComValorIgualAZero.valorValido
         val menorQueZeroEhValido = produtoComMenorQueZero.valorValido
 
-        Assert.assertFalse(igualAZeroEhValido)
-        Assert.assertFalse(menorQueZeroEhValido)
+        igualAZeroEhValido.shouldBeFalse()
+        menorQueZeroEhValido.shouldBeFalse()
+        //Assert.assertFalse(igualAZeroEhValido)
+        //Assert.assertFalse(menorQueZeroEhValido)
     }
 }
