@@ -11,6 +11,7 @@ recognition.addEventListener('result', onSpeak)
 
 function onSpeak(e) {
 chute = e.results[0][0].transcript
+chute = chute.replace('.', '')
 exibeChuteNaTela(chute)
 verificaSeOChutePosuiUmValorValido(chute)
 }
