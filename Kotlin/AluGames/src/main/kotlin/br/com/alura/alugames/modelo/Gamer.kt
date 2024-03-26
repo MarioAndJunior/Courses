@@ -1,24 +1,43 @@
 package br.com.alura.alugames.modelo
 
-import java.util.*
+import br.com.alura.alugames.utilitario.formatoComDuasCasasDecimais
+import java.util.Scanner
 import kotlin.random.Random
 
-data class Gamer(var nome: String, var email: String) {
-    var dataNascimento: String? = null
-    var usuario: String? = null
+data class Gamer(var nome:String, var email:String) : Recomendavel {
+    var dataNascimento:String? = null
+    var usuario:String? = null
         set(value) {
             field = value
-            if (idInterno.isNullOrBlank()) {
+            if(idInterno.isNullOrBlank()) {
                 criarIdInterno()
             }
         }
-
-    var idInterno: String? = null
+    var idInterno:String? = null
         private set
-
+    var plano: Plano = PlanoAvulso("BRONZE")
     val jogosBuscados = mutableListOf<Jogo?>()
+    private val jogosAlugadosInternal = mutableListOf<Aluguel>()
+    val jogosAlugados = jogosAlugadosInternal.asIterable()
+    private val listaNotas = mutableListOf<Int>()
+    val jogosRecomendados = mutableListOf<Jogo>()
 
-    constructor(nome: String, email: String, dataNascimento: String, usuario: String) : this(nome, email) {
+    override val media: Double
+        get() = listaNotas.average().formatoComDuasCasasDecimais()
+
+    override fun recomendar(nota: Int) {
+        if (notaEhValida(nota)) {
+            listaNotas.add(nota)
+        }
+    }
+
+    fun recomendarJogo(jogo: Jogo, nota: Int) {
+        jogo.recomendar(nota)
+        jogosRecomendados.add(jogo)
+    }
+
+    constructor(nome: String, email: String, dataNascimento:String, usuario:String):
+            this(nome, email) {
         this.dataNascimento = dataNascimento
         this.usuario = usuario
         criarIdInterno()
@@ -32,14 +51,20 @@ data class Gamer(var nome: String, var email: String) {
     }
 
     override fun toString(): String {
-        return "Gamer(nome='$nome', email='$email', dataNascimento=$dataNascimento, usuario=$usuario, idInterno=$idInterno)"
+        return "Gamer:" +
+                "Nome: $nome\n" +
+                "Email:$email\n" +
+                "Data Nascimento:$dataNascimento\n" +
+                "Usuario:$usuario\n" +
+                "IdInterno:$idInterno\n" +
+                "Reputação: $media"
     }
 
-    private fun criarIdInterno() {
+    fun criarIdInterno() {
         val numero = Random.nextInt(10000)
         val tag = String.format("%04d", numero)
 
-        this.idInterno = "$usuario#$tag"
+        idInterno = "$usuario#$tag"
     }
 
     fun validarEmail(): String {
@@ -47,8 +72,22 @@ data class Gamer(var nome: String, var email: String) {
         if (regex.matches(email)) {
             return email
         } else {
-            throw IllegalArgumentException("Email não é válido")
+            throw IllegalArgumentException("Email inválido")
         }
+
+    }
+
+    fun alugaJogo(jogo: Jogo, periodo: Periodo): Aluguel {
+        val aluguel = Aluguel(this, jogo, periodo)
+        this.jogosAlugadosInternal.add(aluguel)
+
+        return aluguel
+    }
+
+    fun jogosDoMes(mes: Int): List<Jogo> {
+        return this.jogosAlugadosInternal
+            .filter { it -> it.periodo.dataInicial.monthValue == mes }
+            .map { it.jogo }
     }
 
     companion object {
@@ -70,6 +109,8 @@ data class Gamer(var nome: String, var email: String) {
             } else {
                 return Gamer (nome, email)
             }
+
         }
     }
+
 }
