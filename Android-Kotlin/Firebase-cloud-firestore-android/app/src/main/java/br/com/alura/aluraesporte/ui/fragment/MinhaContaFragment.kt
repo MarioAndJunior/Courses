@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import br.com.alura.aluraesporte.R
 import br.com.alura.aluraesporte.ui.viewmodel.MinhaContaViewModel
 import kotlinx.android.synthetic.main.minha_conta.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MinhaContaFragment : BaseFragment() {
 
