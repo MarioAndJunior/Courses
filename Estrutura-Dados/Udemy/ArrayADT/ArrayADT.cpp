@@ -2,10 +2,18 @@
 //
 
 #include <iostream>
+#include "ArrayADT.h"
 
 struct Array
 {
     int* A;
+    int size;
+    int length;
+};
+
+struct ArrayFixedSize
+{
+    int A[10];
     int size;
     int length;
 };
@@ -32,6 +40,7 @@ bool isSorted(Array arr, int numberOfElements)
 
 void Display(struct Array arr)
 {
+    std::cout << std::endl;
     std::cout << "Length: " << arr.length << std::endl;
     std::cout << "Elements are" << std::endl;
     for (int i = 0; i < arr.length; i++)
@@ -294,7 +303,234 @@ int RecursiveBinarySearch(int arr[], int l, int h, int element)
     return -1;
 }
 
+Array* MergeSorted(Array arr1, Array arr2)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Array* merged = new Array;
+    merged->A = new int[arr1.length + arr2.length];
+    merged->size = arr1.length + arr2.length;
+    merged->length = 0;
+
+    while (i < arr1.length && j < arr2.length)
+    {
+        if (arr1.A[i] < arr2.A[j])
+        {
+            merged->A[k++] = arr1.A[i++];
+        }
+        else
+        {
+            merged->A[k++] = arr2.A[j++];
+        }
+    }
+
+    for (; i < arr1.length; i++)
+    {
+        merged->A[k++] = arr1.A[i];
+    }
+
+    for (; j < arr2.length; j++)
+    {
+        merged->A[k++] = arr2.A[j];
+    }
+
+    merged->length = k;
+    return merged;
+}
+
+Array* UnionSorted(Array arr1, Array arr2)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Array* merged = new Array;
+    merged->A = new int[arr1.length + arr2.length];
+    merged->size = arr1.length + arr2.length;
+    merged->length = 0;
+
+    while (i < arr1.length && j < arr2.length)
+    {
+        if (arr1.A[i] < arr2.A[j])
+        {
+            merged->A[k++] = arr1.A[i++];
+        }
+        else if (arr2.A[j] < arr1.A[i])
+        {
+            merged->A[k++] = arr2.A[j++];
+        }
+        else
+        {
+            merged->A[k++] = arr1.A[i++];
+            j++;
+        }
+    }
+
+    for (; i < arr1.length; i++)
+    {
+        merged->A[k++] = arr1.A[i];
+    }
+
+    for (; j < arr2.length; j++)
+    {
+        merged->A[k++] = arr2.A[j];
+    }
+
+    merged->length = k;
+    return merged;
+}
+
+Array* IntersectionSorted(Array arr1, Array arr2)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Array* merged = new Array;
+    merged->A = new int[arr1.length + arr2.length];
+    merged->size = arr1.length + arr2.length;
+    merged->length = 0;
+
+    while (i < arr1.length && j < arr2.length)
+    {
+        if (arr1.A[i] < arr2.A[j])
+        {
+            i++;
+        }
+        else if (arr2.A[j] < arr1.A[i])
+        {
+            j++;
+        }
+        else // equals
+        {
+            merged->A[k++] = arr1.A[i++];
+            j++;
+        }
+    }
+
+    merged->length = k;
+    return merged;
+}
+
+Array* DifferenceSorted(Array arr1, Array arr2)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    Array* merged = new Array;
+    merged->A = new int[arr1.length + arr2.length];
+    merged->size = arr1.length + arr2.length;
+    merged->length = 0;
+
+    while (i < arr1.length && j < arr2.length)
+    {
+        if (arr1.A[i] < arr2.A[j])
+        {
+            merged->A[k++] = arr1.A[i++];
+        }
+        else if (arr2.A[j] < arr1.A[i])
+        {
+            j++;
+        }
+        else
+        {
+            i++;
+            j++;
+        }
+    }
+
+    for (; i < arr1.length; i++)
+    {
+        merged->A[k++] = arr1.A[i];
+    }
+
+    merged->length = k;
+    return merged;
+}
+
 int main()
+{
+    //arrayPlayground();
+    mainMenu();
+
+}
+
+void mainMenu()
+{
+    Array arr1;
+    int choice;
+    int index;
+    int element;
+    std::cout << "Enter the size of first array" << std::endl;
+    std::cin >> arr1.size;
+    arr1.A = new int[arr1.size];
+    arr1.length = 0;
+
+    do
+    {
+        std::cout << "Menu" << std::endl;
+        std::cout << "1. Insert" << std::endl;
+        std::cout << "2. Delete" << std::endl;
+        std::cout << "3. Search" << std::endl;
+        std::cout << "4. Sum" << std::endl;
+        std::cout << "5. Display" << std::endl;
+        std::cout << "99. Exit" << std::endl;
+
+        std::cout << "Enter your choice" << std::endl;
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+        {
+            std::cout << "Enter an element and index" << std::endl;
+            std::cin >> element >> index;
+            Insert(&arr1, index, element);
+            break;
+        }
+        case 2:
+        {
+            std::cout << "Enter an index" << std::endl;
+            std::cin >> index;
+            Delete(&arr1, index);
+            break;
+        }
+        case 3:
+        {
+            std::cout << "Enter an element" << std::endl;
+            std::cin >> element;
+            int result = BinarySearch(arr1, element);
+            if (result >= 0)
+            {
+                std::cout << "Found at " << result << std::endl;
+            }
+            else
+            {
+                std::cout << "Not found" << std::endl;
+            }
+            break;
+        }
+        case 4:
+        {
+            int result = Sum(arr1);
+            std::cout << "Result of sum is " << result << std::endl;
+            break;
+        }
+        case 5:
+        {
+            Display(arr1);
+            break;
+        }
+        case 99:
+            break;
+        }
+    } while (choice != 99);
+}
+
+void arrayPlayground()
 {
     std::cout << "Array ADT\n";
     Array arr;
@@ -319,38 +555,50 @@ int main()
     arr.length = n;
 
     Display(arr);
-   /* Append(&arr, 22);
+    Append(&arr, 22);
     Display(arr);
     Insert(&arr, 2, 35);
     Display(arr);
     std::cout << Delete(&arr, 0) << std::endl;
-    Display(arr);*/
+    Display(arr);
     std::cout << LinearSearch(arr, 7) << std::endl;
-    /*std::cout << LinearSearchWithTranspositiion(&arr, 12) << std::endl;
-    std::cout << LinearSearchWithMoveToHead(&arr, 12) << std::endl;*/
-    //std::cout << BinarySearch(arr, 7) << std::endl;
-    //std::cout << RecursiveBinarySearch(arr.A, 0, arr.length -1, 7) << std::endl;
+    std::cout << LinearSearchWithTranspositiion(&arr, 12) << std::endl;
+    std::cout << LinearSearchWithMoveToHead(&arr, 12) << std::endl;
+    std::cout << BinarySearch(arr, 7) << std::endl;
+    std::cout << RecursiveBinarySearch(arr.A, 0, arr.length - 1, 7) << std::endl;
     std::cout << Get(arr, 3) << std::endl;
-    //Set(arr, 4, 10);
+    Set(arr, 4, 10);
     Display(arr);
     std::cout << Min(arr) << std::endl;
     std::cout << Max(arr) << std::endl;
     std::cout << Sum(arr) << std::endl;
     std::cout << Avg(arr) << std::endl;
 
-    //Reverse(&arr);
-    //Display(arr);
+    Reverse(&arr);
+    Display(arr);
 
-    //ReverseSwap(&arr);
-    //Display(arr);
+    ReverseSwap(&arr);
+    Display(arr);
 
-    //InsertSort(&arr, 3);
+    InsertSort(&arr, 3);
     Display(arr);
     std::cout << isSorted(arr, arr.length) << std::endl;
     Rearrange(&arr);
     Display(arr);
 
-    //Array arrStack = { {1,2,3,4,5}, 20, 5 }; // if A is fixed size
+    Array arr2 = { new int[5] {2,6,10,15,25}, 10,5 };
+    Array arr3 = { new int[5] {3,6,7,15,20}, 10,5 };
+
+    Display(arr2);
+    Display(arr3);
+    Array* merged = MergeSorted(arr2, arr3);
+    Display(*merged);
+    merged = UnionSorted(arr2, arr3);
+    Display(*merged);
+    merged = IntersectionSorted(arr2, arr3);
+    Display(*merged);
+    merged = DifferenceSorted(arr2, arr3);
+    Display(*merged);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
