@@ -1,11 +1,39 @@
 #include "Array.h"
 
 Array<int>* generateNewArray();
+void findMissingElements();
+void findAndCountDuplicates();
 void arrayMainMenu();
 
 int main(int argc, const char* argv[])
 {
     //arrayMainMenu();
+    findMissingElements();
+
+    findAndCountDuplicates();
+    return 0;
+}
+
+void findAndCountDuplicates()
+{
+    Array<int> arr(10);
+    arr.Append(3);
+    arr.Append(6);
+    arr.Append(8);
+    arr.Append(8);
+    arr.Append(10);
+    arr.Append(12);
+    arr.Append(15);
+    arr.Append(15);
+    arr.Append(15);
+    arr.Append(20);
+
+    arr.FindDuplicateElementsSorted()->Display();
+    arr.FindDuplicateElementsSortedWithSimpleHashTableTechnique()->Display();
+}
+
+void findMissingElements()
+{
     Array<int> arr(11);
     arr.Append(1);
     arr.Append(2);
@@ -21,8 +49,6 @@ int main(int argc, const char* argv[])
 
     arr.FindMissingElementsSortedSequence()->Display();
     arr.FindMissingElementsUnsortedSequence()->Display();
-
-    return 0;
 }
 
 Array<int>* generateNewArray()

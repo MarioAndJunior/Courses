@@ -22,7 +22,7 @@ public:
 	{
 		this->size = size;
 		allocated = new T[this->size]{ initialValue };
-		this->length = 0;
+		this->length = size - 1;
 	}
 
 	virtual ~Array()
@@ -56,6 +56,8 @@ public:
 	Array<T>* DifferenceSorted(Array<T> arr2);
 	Array<T>* FindMissingElementsSortedSequence();
 	Array<T>* FindMissingElementsUnsortedSequence();
+	Array<T>* FindDuplicateElementsSorted();
+	Array<T>* FindDuplicateElementsSortedWithSimpleHashTableTechnique();
 
 private:
 	void swap(int* first, int* second);
@@ -512,7 +514,7 @@ Array<T>* Array<T>::FindMissingElementsSortedSequence()
 
 // Will find the missing elements on an unsorted sequence array -> O(n)
 template<class T>
-Array<T>* Array<T>::FindMissingElementsUnsortedSequence()
+inline Array<T>* Array<T>::FindMissingElementsUnsortedSequence()
 {
 	int low = 1;
 	int high = this->Max();
@@ -520,10 +522,9 @@ Array<T>* Array<T>::FindMissingElementsUnsortedSequence()
 	for (int i = 0; i < this->length; i++)
 	{
 		aux->allocated[this->allocated[i]]++;
-		aux->length++;
 	}
 
-	Array<T>* result = new Array<T>(this->Max(), 0);
+	Array<T>* result = new Array<T>(this->Max());
 	for (int i = low; i <= high; i++)
 	{
 		if (aux->allocated[i] == 0)
@@ -533,6 +534,58 @@ Array<T>* Array<T>::FindMissingElementsUnsortedSequence()
 	}
 
 	delete[] aux;
+
+	return result;
+}
+
+// Will return duplicate elements in a sorted array, followed by it's count for each element O(n)
+template<class T>
+inline Array<T>* Array<T>::FindDuplicateElementsSorted()
+{
+	auto result = new Array<T>(this->length * 2);
+	//Its a sorted array, so to find duplicateds all you need is to compare with the next element
+	for (int i = 0; i < this->length - 1; i++)
+	{
+		if (this->allocated[i] == this->allocated[i + 1])
+		{
+			// Now we have to keep comparing to count n duplicated elements
+			int j = i + 1;
+			while (this->allocated[i] == this->allocated[j])
+			{
+				j++;
+			}
+
+			//append the duplicated
+			result->Append(this->allocated[i]);
+			//append the duplicated count (j - i)
+			result->Append(j - i);
+
+			i = j - 1;
+		}
+	}
+
+	return result;
+}
+
+template<class T>
+inline Array<T>* Array<T>::FindDuplicateElementsSortedWithSimpleHashTableTechnique()
+{
+	auto aux = new Array<T>(this->Max() * 2, 0);
+	auto result = new Array<T>(this->Max() * 2);
+
+	for (int i = 0; i < this->length; i++)
+	{
+		aux->allocated[this->allocated[i]]++;
+	}
+
+	for (int i = 0; i < aux->length; i++)
+	{
+		if (aux->allocated[i] > 1)
+		{
+			result->Append(i);
+			result->Append(aux->allocated[i]);
+		}
+	}
 
 	return result;
 }
